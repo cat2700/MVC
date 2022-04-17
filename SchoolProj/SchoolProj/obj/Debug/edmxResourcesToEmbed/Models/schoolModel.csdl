@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="schooldbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="coursetbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="credit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="enrolltbls" Relationship="Self.FK_enrolltbl_coursetbl" FromRole="coursetbl" ToRole="enrolltbl" />
+  </EntityType>
+  <EntityType Name="enrolltbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="courseid" Type="Int32" Nullable="false" />
+    <Property Name="studentid" Type="Int32" Nullable="false" />
+    <Property Name="grade" Type="Decimal" Precision="4" Scale="1" />
+    <NavigationProperty Name="coursetbl" Relationship="Self.FK_enrolltbl_coursetbl" FromRole="enrolltbl" ToRole="coursetbl" />
+    <NavigationProperty Name="studenttbl" Relationship="Self.FK_enrolltbl_studenttbl" FromRole="enrolltbl" ToRole="studenttbl" />
+  </EntityType>
+  <EntityType Name="studenttbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="enrolldate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="enrolltbls" Relationship="Self.FK_enrolltbl_studenttbl" FromRole="studenttbl" ToRole="enrolltbl" />
+  </EntityType>
+  <Association Name="FK_enrolltbl_coursetbl">
+    <End Role="coursetbl" Type="Self.coursetbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="enrolltbl" Type="Self.enrolltbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="coursetbl">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="enrolltbl">
+        <PropertyRef Name="courseid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_enrolltbl_studenttbl">
+    <End Role="studenttbl" Type="Self.studenttbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="enrolltbl" Type="Self.enrolltbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="studenttbl">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="enrolltbl">
+        <PropertyRef Name="studentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="schooldbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="coursetbls" EntityType="Self.coursetbl" />
+    <EntitySet Name="enrolltbls" EntityType="Self.enrolltbl" />
+    <EntitySet Name="studenttbls" EntityType="Self.studenttbl" />
+    <AssociationSet Name="FK_enrolltbl_coursetbl" Association="Self.FK_enrolltbl_coursetbl">
+      <End Role="coursetbl" EntitySet="coursetbls" />
+      <End Role="enrolltbl" EntitySet="enrolltbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_enrolltbl_studenttbl" Association="Self.FK_enrolltbl_studenttbl">
+      <End Role="studenttbl" EntitySet="studenttbls" />
+      <End Role="enrolltbl" EntitySet="enrolltbls" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

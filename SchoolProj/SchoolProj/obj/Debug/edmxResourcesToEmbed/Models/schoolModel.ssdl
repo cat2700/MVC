@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="schooldbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="coursetbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="credit" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="enrolltbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="courseid" Type="int" Nullable="false" />
+    <Property Name="studentid" Type="int" Nullable="false" />
+    <Property Name="grade" Type="decimal" Precision="4" Scale="1" />
+  </EntityType>
+  <EntityType Name="studenttbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="lname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="enrolldate" Type="date" />
+  </EntityType>
+  <Association Name="FK_enrolltbl_coursetbl">
+    <End Role="coursetbl" Type="Self.coursetbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="enrolltbl" Type="Self.enrolltbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="coursetbl">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="enrolltbl">
+        <PropertyRef Name="courseid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_enrolltbl_studenttbl">
+    <End Role="studenttbl" Type="Self.studenttbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="enrolltbl" Type="Self.enrolltbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="studenttbl">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="enrolltbl">
+        <PropertyRef Name="studentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="schooldbModelStoreContainer">
+    <EntitySet Name="coursetbl" EntityType="Self.coursetbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="enrolltbl" EntityType="Self.enrolltbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="studenttbl" EntityType="Self.studenttbl" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_enrolltbl_coursetbl" Association="Self.FK_enrolltbl_coursetbl">
+      <End Role="coursetbl" EntitySet="coursetbl" />
+      <End Role="enrolltbl" EntitySet="enrolltbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_enrolltbl_studenttbl" Association="Self.FK_enrolltbl_studenttbl">
+      <End Role="studenttbl" EntitySet="studenttbl" />
+      <End Role="enrolltbl" EntitySet="enrolltbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
