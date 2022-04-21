@@ -13,7 +13,6 @@ namespace SchoolProj.Controllers
     public class studenttblsController : Controller
     {
         private schooldbEntities db = new schooldbEntities();
-
         // GET: studenttbls
         public ActionResult Index()
         {
