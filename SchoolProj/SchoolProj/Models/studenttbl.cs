@@ -24,6 +24,7 @@ namespace SchoolProj.Models
         public string fname { get; set; }
         public string lname { get; set; }
         public Nullable<System.DateTime> enrolldate { get; set; }
+        public string imgPath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<enrolltbl> enrolltbls { get; set; }

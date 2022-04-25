@@ -29,6 +29,7 @@
     <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="enrolldate" Type="DateTime" Precision="0" />
     <NavigationProperty Name="enrolltbls" Relationship="Self.FK_enrolltbl_studenttbl" FromRole="studenttbl" ToRole="enrolltbl" />
+    <Property Name="imgPath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_enrolltbl_coursetbl">
     <End Role="coursetbl" Type="Self.coursetbl" Multiplicity="1">

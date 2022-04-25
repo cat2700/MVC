@@ -23,6 +23,7 @@
     <EntitySetMapping Name="studenttbls">
       <EntityTypeMapping TypeName="schooldbModel.studenttbl">
         <MappingFragment StoreEntitySet="studenttbl">
+          <ScalarProperty Name="imgPath" ColumnName="imgPath" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="fname" ColumnName="fname" />
           <ScalarProperty Name="lname" ColumnName="lname" />

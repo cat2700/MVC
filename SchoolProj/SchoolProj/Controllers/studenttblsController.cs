@@ -45,10 +45,15 @@ namespace SchoolProj.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,fname,lname,enrolldate")] studenttbl studenttbl)
+        public ActionResult Create([Bind(Include = "fname,lname,enrolldate,imgPath")] studenttbl studenttbl ,HttpPostedFileBase imgfile)
         {
             if (ModelState.IsValid)
             {
+                if (imgfile != null)
+                {
+                    imgfile.SaveAs(HttpContext.Server.MapPath("~/Content/Images/Students/" + imgfile.FileName));
+                    studenttbl.imgPath = imgfile.FileName;
+                }
                 db.studenttbls.Add(studenttbl);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -77,10 +82,18 @@ namespace SchoolProj.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,fname,lname,enrolldate")] studenttbl studenttbl)
+        public ActionResult Edit([Bind(Include = "id,fname,lname,enrolldate,imgPath")] studenttbl studenttbl, HttpPostedFileBase imgfile)
         {
             if (ModelState.IsValid)
             {
+                if (imgfile != null)
+                {
+                    ViewBag.msg = "is not null";
+                    imgfile.SaveAs(HttpContext.Server.MapPath("~/Content/Images/Students/" + imgfile.FileName));
+                    studenttbl.imgPath = imgfile.FileName;
+                }
+                else{ViewBag.msg = "is null";}
+
                 db.Entry(studenttbl).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

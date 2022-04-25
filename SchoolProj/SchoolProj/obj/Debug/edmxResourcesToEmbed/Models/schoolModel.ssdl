@@ -25,6 +25,7 @@
     <Property Name="fname" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="lname" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="enrolldate" Type="date" />
+    <Property Name="imgPath" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <Association Name="FK_enrolltbl_coursetbl">
     <End Role="coursetbl" Type="Self.coursetbl" Multiplicity="1">

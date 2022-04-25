@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
 }
 
+<h1>@ViewBag.msg</h1>
+
 <h2>Index</h2>
 
 <p>
@@ -20,26 +22,41 @@
         <th>
             @Html.DisplayNameFor(model => model.enrolldate)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imgPath)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.enrolldate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.fname)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.lname)
+    </td>
+    <td>
+        @*@Html.DisplayFor(modelItem => item.enrolldate)*@
+        @if (!string.IsNullOrWhiteSpace(item.enrolldate.ToString()))
+        {
+            @Convert.ToDateTime(item.enrolldate).ToString("dd/MM/yyyy").ToString();
+        }
+    </td>
+    <td>
+        @*@Html.DisplayFor(modelItem => item.imgPath)*@
+        @if (! string.IsNullOrWhiteSpace(item.imgPath))
+        {
+            <img width="50" height="50"
+                 src="~/Content/Images/Students/@Url.Content(item.imgPath)" alt="Alternate Text" />
+        }
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+    </td>
+</tr>
 }
 
 </table>
