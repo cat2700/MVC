@@ -1,0 +1,20 @@
+﻿@model List<proj1.Models.Student>
+
+@{
+    ViewBag.Title = "viewbag from view";
+}
+
+
+@foreach (var item in Model)
+{
+    <h2>
+        @item.stID ==> @item.stFName <> @item.stLName
+    </h2>
+}
+
+<h3>@ViewBag.xxxx</h3>
+<h4>@ViewBag.Title</h4>
+
+
+
+
