@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cascadingDropDownListsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="citiy">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="StateId" Type="Int32" Nullable="false" />
+    <Property Name="CityName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="state" Relationship="Self.FK_citiy_state" FromRole="citiy" ToRole="state" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="states" Relationship="Self.FK_state_country" FromRole="country" ToRole="state" />
+  </EntityType>
+  <EntityType Name="state">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int32" Nullable="false" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="citiys" Relationship="Self.FK_citiy_state" FromRole="state" ToRole="citiy" />
+    <NavigationProperty Name="country" Relationship="Self.FK_state_country" FromRole="state" ToRole="country" />
+  </EntityType>
+  <Association Name="FK_citiy_state">
+    <End Role="state" Type="Self.state" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="citiy" Type="Self.citiy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="citiy">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_state_country">
+    <End Role="country" Type="Self.country" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="state" Type="Self.state" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="state">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NewCascadingDropDownListsDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="citiys" EntityType="Self.citiy" />
+    <EntitySet Name="countries" EntityType="Self.country" />
+    <EntitySet Name="states" EntityType="Self.state" />
+    <AssociationSet Name="FK_citiy_state" Association="Self.FK_citiy_state">
+      <End Role="state" EntitySet="states" />
+      <End Role="citiy" EntitySet="citiys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_state_country" Association="Self.FK_state_country">
+      <End Role="country" EntitySet="countries" />
+      <End Role="state" EntitySet="states" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

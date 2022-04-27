@@ -1,0 +1,33 @@
+﻿@model  IEnumerable<dropListProj.Models.citiy>
+@{
+    ViewBag.Title = "Home Page";
+}
+<h1>Populating DropDown Lists</h1>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+
+    @Html.DropDownList("CoutriesBag", null, "Pleade Select", htmlAttributes: new { @class = "form-control", onchange = "document.forms[0].submit();" })
+
+    if (!string.IsNullOrEmpty(Request.Params["CoutriesBag"]))
+    {
+        <br />
+        @Html.DropDownList("StatesBag", null, "Pleade Select", htmlAttributes: new { @class = "form-control", onchange = "document.forms[0].submit();" })
+    }
+    <br />
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>City Name</th>
+            <th>State ID</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CityId</td>
+                <td>@item.CityName</td>
+                <td>@item.StateId</td>
+            </tr>
+        }
+    </table>
+}
