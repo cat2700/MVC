@@ -40,7 +40,7 @@ namespace SchoolProj.Controllers
         public ActionResult Create()
         {
             ViewBag.courseid = new SelectList(db.coursetbls, "id", "title");
-            ViewBag.studentid = new SelectList(db.studenttbls, "id", "fname");
+            ViewBag.studentid = new SelectList(db.studenttbls, "id", "MyFullName");
             return View();
         }
 

@@ -11,6 +11,7 @@ namespace SchoolProj.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class studenttbl
     {
@@ -23,6 +24,13 @@ namespace SchoolProj.Models
         public int id { get; set; }
         public string fname { get; set; }
         public string lname { get; set; }
+        public string MyFullName {
+            get
+            {
+                return (fname + ' ' + lname).Trim();
+            }
+        }
+        [DisplayFormat (ApplyFormatInEditMode =true,DataFormatString = "{0:yyyy/MM/dd}")]
         public Nullable<System.DateTime> enrolldate { get; set; }
         public string imgPath { get; set; }
     
