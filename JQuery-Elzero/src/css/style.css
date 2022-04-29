@@ -1,3 +1,19 @@
-/* span    {
+.open , .box    {
+    padding: 10;
+    background-color: #DDD;
+    border: 1px solid #676767;
+    width: 600px;
+    margin: 0 auto 0;
+}
+.box {
     display: none;
-} */
+}
+
+.anim{
+    width: 300px;
+    background: #EEE;
+    border: 1px solid #CCC;
+    padding: 10px;
+    position: absolute;
+    top: -300px;
+}
