@@ -1,0 +1,7 @@
+D:\Github_files\MVC\LINQ-Console - Advanced\LINQ-Console\bin\Debug\LINQ-Console.exe.config
+D:\Github_files\MVC\LINQ-Console - Advanced\LINQ-Console\bin\Debug\LINQ-Console.exe
+D:\Github_files\MVC\LINQ-Console - Advanced\LINQ-Console\bin\Debug\LINQ-Console.pdb
+D:\Github_files\MVC\LINQ-Console - Advanced\LINQ-Console\obj\Debug\LINQ-Console-Adv.csproj.CoreCompileInputs.cache
+D:\Github_files\MVC\LINQ-Console - Advanced\LINQ-Console\obj\Debug\LINQ-Console.exe
+D:\Github_files\MVC\LINQ-Console - Advanced\LINQ-Console\obj\Debug\LINQ-Console.pdb
+D:\Github_files\MVC\LINQ-Console - Advanced\LINQ-Console\obj\Debug\LINQ-Console-Adv.csproj.AssemblyReference.cache
