@@ -14,9 +14,69 @@ namespace LINQ_Console
 
             //LINQ_Extention_Methos_Examples();
 
-            LINQ_Query_Operator();
+            //LINQ_Query_Operator();
+
+            //LINQ_ReturnOneRow();
+
+            //LINQ_Pagination();
+
+            LINQ_Aggregates();
+
 
             Console.ReadKey();
+        }
+
+        private static void LINQ_Aggregates()
+        {
+            // >> count , max , min , sum
+
+            // >> Get Data:
+            var books = new BookRepo().GetBooks();
+
+            var count = books.Count();
+            var max = books.Max(v => v.price);
+            var min = books.Min(v => v.price);
+            var aver = books.Average(v => v.price);
+            var sum = books.Sum(v => v.price);
+
+            // >> Display:   
+            Console.WriteLine(count);
+            
+        }
+
+        private static void LINQ_Pagination()
+        {
+            // مهم جدا في عمل جريد به صفحات لعرض الحقول الكثيرة على اكثر من صفحة
+
+            // >> Get Data:
+            var books = new BookRepo().GetBooks();
+
+            var selectedBooks = books.Skip(2).Take(2);
+
+            // >> Display:
+            foreach (var c in selectedBooks)
+            {
+                Console.WriteLine(c.title + " >> " + c.price);
+            }
+
+        }
+
+        private static void LINQ_ReturnOneRow()
+        {
+            // >> Get Data:
+            var books = new BookRepo().GetBooks();
+
+            // >> LINQ return one row:
+            //var oneRow = books.Single(x => x.title == "Python OOP "); // will exception if return null or more one row
+            //var oneRow = books.SingleOrDefault(x => x.price > 4); //// will exception if return more one row
+            //var oneRow = books.FirstOrDefault(x => x.price > 4);
+            var oneRow = books.LastOrDefault(x => x.price > 4);
+
+            // >> Display:
+            if (oneRow != null)
+            {
+                Console.WriteLine(oneRow.title + " " + oneRow.price);
+            }
         }
 
         private static void LINQ_Query_Operator()
@@ -35,7 +95,7 @@ namespace LINQ_Console
                 Console.WriteLine(c);
             }
 
-            
+
 
         }
 

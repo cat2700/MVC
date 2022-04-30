@@ -5,3 +5,10 @@ C:\Users\admin\Desktop\LINQ-Console\LINQ-Console\obj\Debug\LINQ-Console.csproj.A
 C:\Users\admin\Desktop\LINQ-Console\LINQ-Console\obj\Debug\LINQ-Console.csproj.CoreCompileInputs.cache
 C:\Users\admin\Desktop\LINQ-Console\LINQ-Console\obj\Debug\LINQ-Console.exe
 C:\Users\admin\Desktop\LINQ-Console\LINQ-Console\obj\Debug\LINQ-Console.pdb
+D:\Github_files\MVC\LINQ-Console\LINQ-Console\bin\Debug\LINQ-Console.exe.config
+D:\Github_files\MVC\LINQ-Console\LINQ-Console\bin\Debug\LINQ-Console.exe
+D:\Github_files\MVC\LINQ-Console\LINQ-Console\bin\Debug\LINQ-Console.pdb
+D:\Github_files\MVC\LINQ-Console\LINQ-Console\obj\Debug\LINQ-Console.csproj.AssemblyReference.cache
+D:\Github_files\MVC\LINQ-Console\LINQ-Console\obj\Debug\LINQ-Console.csproj.CoreCompileInputs.cache
+D:\Github_files\MVC\LINQ-Console\LINQ-Console\obj\Debug\LINQ-Console.exe
+D:\Github_files\MVC\LINQ-Console\LINQ-Console\obj\Debug\LINQ-Console.pdb
