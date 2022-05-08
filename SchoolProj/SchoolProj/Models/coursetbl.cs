@@ -11,7 +11,8 @@ namespace SchoolProj.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class coursetbl
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +22,18 @@ namespace SchoolProj.Models
         }
     
         public int id { get; set; }
+        [Required (ErrorMessage ="‰”Ì  Ì« ⁄„‰« «·⁄‰Ê«‰")]
         public string title { get; set; }
+        [Required(ErrorMessage = "Õÿ Ì«—Ì” ⁄œœ «·”«⁄« ")]
+        [Range(2,6,ErrorMessage ="Should Between 2 And 6")]
         public string credit { get; set; }
+        [Display(Name ="«·Ê’›")]
+        public string description { get; set; }
+        public Nullable<int> price { get; set; }
+        [Required(ErrorMessage ="Select From List")]
+        [EnumDataType(typeof(CourseLevels),ErrorMessage ="√Œ — Ì« ⁄„‰«")]
+        public Nullable<CourseLevels> level { get; set; }
+        public bool isactive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<enrolltbl> enrolltbls { get; set; }

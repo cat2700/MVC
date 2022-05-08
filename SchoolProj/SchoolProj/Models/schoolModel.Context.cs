@@ -12,6 +12,8 @@ namespace SchoolProj.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class schooldbEntities : DbContext
     {
@@ -28,5 +30,38 @@ namespace SchoolProj.Models
         public virtual DbSet<coursetbl> coursetbls { get; set; }
         public virtual DbSet<enrolltbl> enrolltbls { get; set; }
         public virtual DbSet<studenttbl> studenttbls { get; set; }
+    
+        [DbFunction("schooldbEntities", "funcGitCourseByTitle")]
+        public virtual IQueryable<funcGitCourseByTitle_Result> funcGitCourseByTitle(string myTitle)
+        {
+            var myTitleParameter = myTitle != null ?
+                new ObjectParameter("myTitle", myTitle) :
+                new ObjectParameter("myTitle", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<funcGitCourseByTitle_Result>("[schooldbEntities].[funcGitCourseByTitle](@myTitle)", myTitleParameter);
+        }
+    
+        public virtual ObjectResult<coursetbl> getCourses()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<coursetbl>("getCourses");
+        }
+    
+        public virtual ObjectResult<coursetbl> getCourses(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<coursetbl>("getCourses", mergeOption);
+        }
+    
+        public virtual int insertCourse(string mytitle, Nullable<int> mycredits)
+        {
+            var mytitleParameter = mytitle != null ?
+                new ObjectParameter("mytitle", mytitle) :
+                new ObjectParameter("mytitle", typeof(string));
+    
+            var mycreditsParameter = mycredits.HasValue ?
+                new ObjectParameter("mycredits", mycredits) :
+                new ObjectParameter("mycredits", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insertCourse", mytitleParameter, mycreditsParameter);
+        }
     }
 }

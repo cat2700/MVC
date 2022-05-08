@@ -174,14 +174,24 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CourseLevels.cs">
+      <DependentUpon>schoolModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\coursetbl.cs">
       <DependentUpon>schoolModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\enrolltbl.cs">
       <DependentUpon>schoolModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\funcGitCourseByTitle_Result.cs">
+      <DependentUpon>schoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getCourses_Result.cs">
+      <DependentUpon>schoolModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\partialClases.cs" />
     <Compile Include="Models\schoolModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

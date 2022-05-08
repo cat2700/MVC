@@ -7,6 +7,10 @@
     <Property Name="id" Type="int" Nullable="false" />
     <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="credit" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="price" Type="int" />
+    <Property Name="level" Type="tinyint" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="enrolltbl">
     <Key>
@@ -55,6 +59,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="funcGitCourseByTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="myTitle" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="credit" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="price" Type="int" />
+          <Property Name="level" Type="nvarchar" MaxLength="50" />
+          <Property Name="isactive" Type="bit" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="getCourses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="insertCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mytitle" Type="nvarchar" Mode="In" />
+    <Parameter Name="mycredits" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="schooldbModelStoreContainer">
     <EntitySet Name="coursetbl" EntityType="Self.coursetbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="enrolltbl" EntityType="Self.enrolltbl" Schema="dbo" store:Type="Tables" />

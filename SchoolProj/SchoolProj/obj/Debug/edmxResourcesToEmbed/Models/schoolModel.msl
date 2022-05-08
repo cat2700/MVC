@@ -4,6 +4,10 @@
     <EntitySetMapping Name="coursetbls">
       <EntityTypeMapping TypeName="schooldbModel.coursetbl">
         <MappingFragment StoreEntitySet="coursetbl">
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="credit" ColumnName="credit" />
@@ -31,5 +35,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="funcGitCourseByTitle" FunctionName="schooldbModel.Store.funcGitCourseByTitle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="schooldbModel.funcGitCourseByTitle_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="credit" ColumnName="credit" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getCourses" FunctionName="schooldbModel.Store.getCourses" />
+    <FunctionImportMapping FunctionImportName="insertCourse" FunctionName="schooldbModel.Store.insertCourse" />
   </EntityContainerMapping>
 </Mapping>

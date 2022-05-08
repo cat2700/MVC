@@ -12,6 +12,10 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="credit" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="price" Type="int" />
+          <Property Name="level" Type="tinyint" />
+          <Property Name="isactive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="enrolltbl">
           <Key>
@@ -60,6 +64,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="funcGitCourseByTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="myTitle" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="id" Type="int" Nullable="false" />
+                <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="credit" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="description" Type="nvarchar(max)" />
+                <Property Name="price" Type="int" />
+                <Property Name="level" Type="nvarchar" MaxLength="50" />
+                <Property Name="isactive" Type="bit" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="getCourses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="insertCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mytitle" Type="nvarchar" Mode="In" />
+          <Parameter Name="mycredits" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="schooldbModelStoreContainer">
           <EntitySet Name="coursetbl" EntityType="Self.coursetbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="enrolltbl" EntityType="Self.enrolltbl" Schema="dbo" store:Type="Tables" />
@@ -85,6 +110,10 @@
           <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="credit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="enrolltbls" Relationship="Self.FK_enrolltbl_coursetbl" FromRole="coursetbl" ToRole="enrolltbl" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="level" Type="schooldbModel.CourseLevels" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="enrolltbl">
           <Key>
@@ -148,7 +177,38 @@
             <End Role="studenttbl" EntitySet="studenttbls" />
             <End Role="enrolltbl" EntitySet="enrolltbls" />
           </AssociationSet>
+          <FunctionImport Name="funcGitCourseByTitle" IsComposable="true" ReturnType="Collection(schooldbModel.funcGitCourseByTitle_Result)">
+          <Parameter Name="myTitle" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getCourses" EntitySet="coursetbls" ReturnType="Collection(schooldbModel.coursetbl)" />
+          <FunctionImport Name="insertCourse">
+            <Parameter Name="mytitle" Mode="In" Type="String" />
+            <Parameter Name="mycredits" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="funcGitCourseByTitle_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="credit" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" />
+          <Property Type="Int32" Name="price" Nullable="true" />
+          <Property Type="String" Name="level" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="isactive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getCourses_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="credit" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" />
+          <Property Type="Int32" Name="price" Nullable="true" />
+          <Property Type="String" Name="level" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="isactive" Nullable="false" />
+        </ComplexType>
+        <EnumType Name="CourseLevels" UnderlyingType="Byte">
+          <Member Name="Beginner" Value="1" />
+          <Member Name="Intermediate" Value="2" />
+          <Member Name="Advanced" Value="3" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -158,6 +218,10 @@
           <EntitySetMapping Name="coursetbls">
             <EntityTypeMapping TypeName="schooldbModel.coursetbl">
               <MappingFragment StoreEntitySet="coursetbl">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="credit" ColumnName="credit" />
@@ -185,6 +249,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="funcGitCourseByTitle" FunctionName="schooldbModel.Store.funcGitCourseByTitle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="schooldbModel.funcGitCourseByTitle_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="credit" ColumnName="credit" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCourses" FunctionName="schooldbModel.Store.getCourses">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="insertCourse" FunctionName="schooldbModel.Store.insertCourse" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
