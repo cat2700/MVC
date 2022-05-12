@@ -11,6 +11,7 @@
     <Property Name="price" Type="int" />
     <Property Name="level" Type="tinyint" />
     <Property Name="isactive" Type="bit" Nullable="false" />
+    <Property Name="rating" Type="tinyint" />
   </EntityType>
   <EntityType Name="enrolltbl">
     <Key>
@@ -69,7 +70,7 @@
           <Property Name="credit" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="description" Type="nvarchar(max)" />
           <Property Name="price" Type="int" />
-          <Property Name="level" Type="nvarchar" MaxLength="50" />
+          <Property Name="level" Type="tinyint" />
           <Property Name="isactive" Type="bit" Nullable="false" />
         </RowType>
       </CollectionType>

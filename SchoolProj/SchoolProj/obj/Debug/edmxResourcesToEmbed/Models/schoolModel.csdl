@@ -12,6 +12,7 @@
     <Property Name="price" Type="Int32" />
     <Property Name="level" Type="schooldbModel.CourseLevels" />
     <Property Name="isactive" Type="Boolean" Nullable="false" />
+    <Property Name="rating" Type="schooldbModel.RatingLevels" />
   </EntityType>
   <EntityType Name="enrolltbl">
     <Key>
@@ -90,7 +91,7 @@
     <Property Type="String" Name="credit" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="description" Nullable="true" />
     <Property Type="Int32" Name="price" Nullable="true" />
-    <Property Type="String" Name="level" Nullable="true" MaxLength="50" />
+    <Property Type="Byte" Name="level" Nullable="true" />
     <Property Type="Boolean" Name="isactive" Nullable="false" />
   </ComplexType>
   <ComplexType Name="getCourses_Result">
@@ -106,5 +107,12 @@
     <Member Name="Beginner" Value="1" />
     <Member Name="Intermediate" Value="2" />
     <Member Name="Advanced" Value="3" />
+  </EnumType>
+  <EnumType Name="RatingLevels" UnderlyingType="Byte">
+    <Member Name="Bad" Value="1" />
+    <Member Name="Fair" Value="2" />
+    <Member Name="Good" Value="3" />
+    <Member Name="Excellent" Value="4" />
+    <Member Name="Awesome" Value="5" />
   </EnumType>
 </Schema>

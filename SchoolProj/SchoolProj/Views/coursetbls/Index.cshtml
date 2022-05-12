@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link rel="stylesheet" href="newglyphicon.css" />
 <h2>Index</h2>
 
 <p>
@@ -20,26 +20,40 @@
         <th>
             @Html.DisplayNameFor(model => model.credit)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rating)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.title)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.level)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.credit)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.id })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.credit)
+            </td>
+            <td>
+                @if (item.rating.HasValue)
+                {
+                    for (int i = 0; i < (int)item.rating; i++)
+                    {
+                        <span class="glyphicon glyphicon-star-empty" ></span>
+                    }
+                }
+
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -192,6 +192,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\partialClases.cs" />
+    <Compile Include="Models\RatingLevels.cs">
+      <DependentUpon>schoolModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\schoolModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

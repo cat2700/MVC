@@ -46,7 +46,7 @@ namespace SchoolProj.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,title,credit,description,level,isactive")] coursetbl coursetbl)
+        public ActionResult Create([Bind(Include = "id,title,credit,description,level,rating,isactive")] coursetbl coursetbl)
         {
             if (ModelState.IsValid)
             {

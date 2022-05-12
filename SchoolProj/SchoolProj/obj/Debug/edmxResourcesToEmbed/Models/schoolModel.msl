@@ -4,6 +4,7 @@
     <EntitySetMapping Name="coursetbls">
       <EntityTypeMapping TypeName="schooldbModel.coursetbl">
         <MappingFragment StoreEntitySet="coursetbl">
+          <ScalarProperty Name="rating" ColumnName="rating" />
           <ScalarProperty Name="isactive" ColumnName="isactive" />
           <ScalarProperty Name="level" ColumnName="level" />
           <ScalarProperty Name="price" ColumnName="price" />

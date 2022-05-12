@@ -11,14 +11,12 @@ namespace SchoolProj.Models
 {
     using System;
     
-    public partial class funcGitCourseByTitle_Result
+    public enum RatingLevels : byte
     {
-        public int id { get; set; }
-        public string title { get; set; }
-        public string credit { get; set; }
-        public string description { get; set; }
-        public Nullable<int> price { get; set; }
-        public Nullable<byte> level { get; set; }
-        public bool isactive { get; set; }
+        Bad = 1,
+        Fair = 2,
+        Good = 3,
+        Excellent = 4,
+        Awesome = 5
     }
 }

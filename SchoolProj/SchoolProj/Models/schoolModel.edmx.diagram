@@ -5,9 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cbc4fd8708154037b5acf707c61133c5" Name="Diagram1" ZoomLevel="97" DisplayType="true">
-        <EntityTypeShape EntityType="schooldbModel.coursetbl" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="schooldbModel.enrolltbl" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="schooldbModel.studenttbl" Width="1.5" PointX="7" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="schooldbModel.coursetbl" Width="2.75" PointX="0.625" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="schooldbModel.enrolltbl" Width="1.875" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="schooldbModel.studenttbl" Width="1.875" PointX="7" PointY="1.875" IsExpanded="true" />
         <AssociationConnector Association="schooldbModel.FK_enrolltbl_coursetbl" ManuallyRouted="false" />
         <AssociationConnector Association="schooldbModel.FK_enrolltbl_studenttbl" ManuallyRouted="false" />
       </Diagram>
