@@ -1,5 +1,3 @@
-D:\Github_files\MVC\SchoolProj\SchoolProj\bin\EntityFramework.dll
-D:\Github_files\MVC\SchoolProj\SchoolProj\bin\EntityFramework.xml
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\SchoolProj.dll.config
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\SchoolProj.dll
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\SchoolProj.pdb
@@ -34,6 +32,7 @@ D:\Github_files\MVC\SchoolProj\SchoolProj\bin\roslyn\vbc.rsp
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\roslyn\VBCSCompiler.exe
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\roslyn\VBCSCompiler.exe.config
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\Antlr3.Runtime.dll
+D:\Github_files\MVC\SchoolProj\SchoolProj\bin\EntityFramework.dll
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\EntityFramework.SqlServer.dll
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\Microsoft.AspNet.Identity.Core.dll
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\Microsoft.AspNet.Identity.EntityFramework.dll
@@ -59,6 +58,7 @@ D:\Github_files\MVC\SchoolProj\SchoolProj\bin\System.Web.WebPages.Deployment.dll
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\System.Web.WebPages.dll
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\System.Web.WebPages.Razor.dll
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\WebGrease.dll
+D:\Github_files\MVC\SchoolProj\SchoolProj\bin\EntityFramework.xml
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\EntityFramework.SqlServer.xml
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Github_files\MVC\SchoolProj\SchoolProj\bin\Microsoft.Owin.xml
@@ -86,4 +86,3 @@ D:\Github_files\MVC\SchoolProj\SchoolProj\obj\Debug\SchoolProj.csproj.CoreCompil
 D:\Github_files\MVC\SchoolProj\SchoolProj\obj\Debug\SchoolProj.csproj.CopyComplete
 D:\Github_files\MVC\SchoolProj\SchoolProj\obj\Debug\SchoolProj.dll
 D:\Github_files\MVC\SchoolProj\SchoolProj\obj\Debug\SchoolProj.pdb
-D:\Github_files\MVC\SchoolProj\SchoolProj\obj\Debug\SchoolProj.csprojAssemblyReference.cache

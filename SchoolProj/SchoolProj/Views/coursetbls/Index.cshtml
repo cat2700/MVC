@@ -19,6 +19,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.credit)
+
         </th>
         <th>
             @Html.DisplayNameFor(model => model.rating)
@@ -43,7 +44,9 @@
                 {
                     for (int i = 0; i < (int)item.rating; i++)
                     {
-                        <span class="glyphicon glyphicon-star-empty" ></span>
+                        <span style="font-size: 1em; color: Tomato;">
+                            <i class="fa fa-light fa-star"></i>
+                        </span>
                     }
                 }
 
