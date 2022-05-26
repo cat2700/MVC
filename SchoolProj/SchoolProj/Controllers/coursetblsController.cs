@@ -15,9 +15,20 @@ namespace SchoolProj.Controllers
         private schooldbEntities db = new schooldbEntities();
 
         // GET: coursetbls
-        public ActionResult Index()
+        public ActionResult Index(string searchInCourses)
         {
-            return View(db.coursetbls.ToList());
+            if (string.IsNullOrEmpty(searchInCourses))
+            {
+                return View(db.coursetbls.ToList());
+            }
+            else
+            {
+                var cc = from d in db.coursetbls
+                         where d.title.Contains(searchInCourses) 
+                         select d;
+                
+                return View(cc.ToList());
+            }
         }
 
         // GET: coursetbls/Details/5
@@ -38,6 +49,7 @@ namespace SchoolProj.Controllers
         // GET: coursetbls/Create
         public ActionResult Create()
         {
+            ViewBag.level2bag = new SelectList(db.couselevels,"id","level");
             return View();
         }
 
@@ -46,7 +58,7 @@ namespace SchoolProj.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,title,credit,description,level,rating,isactive")] coursetbl coursetbl)
+        public ActionResult Create([Bind(Include = "id,title,credit,description,rating,isactive,level2bag")] coursetbl coursetbl)
         {
             if (ModelState.IsValid)
             {
@@ -54,7 +66,7 @@ namespace SchoolProj.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.level2bag = new SelectList(db.couselevels, "id", "level");
             return View(coursetbl);
         }
 

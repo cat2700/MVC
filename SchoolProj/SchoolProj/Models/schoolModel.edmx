@@ -17,6 +17,14 @@
           <Property Name="level" Type="tinyint" />
           <Property Name="isactive" Type="bit" Nullable="false" />
           <Property Name="rating" Type="tinyint" />
+          <Property Name="level2" Type="int" />
+        </EntityType>
+        <EntityType Name="couselevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="level" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="enrolltbl">
           <Key>
@@ -37,6 +45,18 @@
           <Property Name="enrolldate" Type="date" />
           <Property Name="imgPath" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <Association Name="FK__coursetbl__level__37A5467C">
+          <End Role="couselevel" Type="Self.couselevel" Multiplicity="0..1" />
+          <End Role="coursetbl" Type="Self.coursetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="couselevel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="coursetbl">
+              <PropertyRef Name="level2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_enrolltbl_coursetbl">
           <End Role="coursetbl" Type="Self.coursetbl" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -88,8 +108,13 @@
         </Function>
         <EntityContainer Name="schooldbModelStoreContainer">
           <EntitySet Name="coursetbl" EntityType="Self.coursetbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="couselevel" EntityType="Self.couselevel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="enrolltbl" EntityType="Self.enrolltbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="studenttbl" EntityType="Self.studenttbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__coursetbl__level__37A5467C" Association="Self.FK__coursetbl__level__37A5467C">
+            <End Role="couselevel" EntitySet="couselevel" />
+            <End Role="coursetbl" EntitySet="coursetbl" />
+          </AssociationSet>
           <AssociationSet Name="FK_enrolltbl_coursetbl" Association="Self.FK_enrolltbl_coursetbl">
             <End Role="coursetbl" EntitySet="coursetbl" />
             <End Role="enrolltbl" EntitySet="enrolltbl" />
@@ -116,6 +141,8 @@
           <Property Name="level" Type="schooldbModel.CourseLevels" />
           <Property Name="isactive" Type="Boolean" Nullable="false" />
           <Property Name="rating" Type="schooldbModel.RatingLevels" />
+          <Property Name="level2" Type="Int32" />
+          <NavigationProperty Name="couselevel" Relationship="schooldbModel.FK__coursetbl__level__37A5467C" FromRole="coursetbl" ToRole="couselevel" />
         </EntityType>
         <EntityType Name="enrolltbl">
           <Key>
@@ -187,6 +214,11 @@
             <Parameter Name="mytitle" Mode="In" Type="String" />
             <Parameter Name="mycredits" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="couselevels" EntityType="schooldbModel.couselevel" />
+          <AssociationSet Name="FK__coursetbl__level__37A5467C" Association="schooldbModel.FK__coursetbl__level__37A5467C">
+            <End Role="couselevel" EntitySet="couselevels" />
+            <End Role="coursetbl" EntitySet="coursetbls" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="funcGitCourseByTitle_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -218,6 +250,26 @@
           <Member Name="Excellent" Value="4" />
           <Member Name="Awesome" Value="5" />
         </EnumType>
+        <EntityType Name="couselevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="level" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="coursetbls" Relationship="schooldbModel.FK__coursetbl__level__37A5467C" FromRole="couselevel" ToRole="coursetbl" />
+        </EntityType>
+        <Association Name="FK__coursetbl__level__37A5467C">
+          <End Type="schooldbModel.couselevel" Role="couselevel" Multiplicity="0..1" />
+          <End Type="schooldbModel.coursetbl" Role="coursetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="couselevel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="coursetbl">
+              <PropertyRef Name="level2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -227,6 +279,7 @@
           <EntitySetMapping Name="coursetbls">
             <EntityTypeMapping TypeName="schooldbModel.coursetbl">
               <MappingFragment StoreEntitySet="coursetbl">
+                <ScalarProperty Name="level2" ColumnName="level2" />
                 <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="isactive" ColumnName="isactive" />
                 <ScalarProperty Name="level" ColumnName="level" />
@@ -275,6 +328,14 @@
           <FunctionImportMapping FunctionImportName="getCourses" FunctionName="schooldbModel.Store.getCourses">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="insertCourse" FunctionName="schooldbModel.Store.insertCourse" />
+          <EntitySetMapping Name="couselevels">
+            <EntityTypeMapping TypeName="schooldbModel.couselevel">
+              <MappingFragment StoreEntitySet="couselevel">
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,0 +1,10 @@
+﻿@model   SchoolProj.Models.enrolltbl
+<div class="card">
+    <div class="card-header">
+        @Model.coursetbl.title @Model.coursetbl.credit Hour(s)
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.grade</h5>
+        @Html.ActionLink("Edit", "Edit", "enrolltbls", new { id = Model.id }, new { @class = "btn btn-primary" })
+    </div>
+</div>

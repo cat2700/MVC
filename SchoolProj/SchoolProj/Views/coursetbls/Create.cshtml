@@ -41,9 +41,13 @@
 
     <div class="form-floating">
 
-        @Html.EnumDropDownListFor(model => model.level, "Please Select", htmlAttributes: new { @class = "form-select" })
+        @*@Html.EnumDropDownListFor(model => model.level, "Please Select", htmlAttributes: new { @class = "form-select" })
         @Html.LabelFor(model => model.level, htmlAttributes: new { @class = "floatingSelect" })
-        @Html.ValidationMessageFor(model => model.level, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.level, "", new { @class = "text-danger" })*@
+
+        @Html.DropDownList("level2bag", null, htmlAttributes: new { @class = "form-select" })
+        @Html.LabelFor(model => model.level2, htmlAttributes: new { @class = "floatingSelect" })
+        @Html.ValidationMessageFor(model => model.level2, "", new { @class = "text-danger" })
 
     </div>
 

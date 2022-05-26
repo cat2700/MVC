@@ -28,8 +28,10 @@ namespace SchoolProj.Models
         public Nullable<CourseLevels> level { get; set; }
         public bool isactive { get; set; }
         public Nullable<RatingLevels> rating { get; set; }
+        public Nullable<int> level2 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<enrolltbl> enrolltbls { get; set; }
+        public virtual couselevel couselevel { get; set; }
     }
 }

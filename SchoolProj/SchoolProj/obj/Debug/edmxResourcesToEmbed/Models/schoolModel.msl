@@ -4,6 +4,7 @@
     <EntitySetMapping Name="coursetbls">
       <EntityTypeMapping TypeName="schooldbModel.coursetbl">
         <MappingFragment StoreEntitySet="coursetbl">
+          <ScalarProperty Name="level2" ColumnName="level2" />
           <ScalarProperty Name="rating" ColumnName="rating" />
           <ScalarProperty Name="isactive" ColumnName="isactive" />
           <ScalarProperty Name="level" ColumnName="level" />
@@ -51,5 +52,13 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="getCourses" FunctionName="schooldbModel.Store.getCourses" />
     <FunctionImportMapping FunctionImportName="insertCourse" FunctionName="schooldbModel.Store.insertCourse" />
+    <EntitySetMapping Name="couselevels">
+      <EntityTypeMapping TypeName="schooldbModel.couselevel">
+        <MappingFragment StoreEntitySet="couselevel">
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

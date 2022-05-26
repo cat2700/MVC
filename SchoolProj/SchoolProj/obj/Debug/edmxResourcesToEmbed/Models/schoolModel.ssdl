@@ -12,6 +12,14 @@
     <Property Name="level" Type="tinyint" />
     <Property Name="isactive" Type="bit" Nullable="false" />
     <Property Name="rating" Type="tinyint" />
+    <Property Name="level2" Type="int" />
+  </EntityType>
+  <EntityType Name="couselevel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="level" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="enrolltbl">
     <Key>
@@ -32,6 +40,18 @@
     <Property Name="enrolldate" Type="date" />
     <Property Name="imgPath" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <Association Name="FK__coursetbl__level__37A5467C">
+    <End Role="couselevel" Type="Self.couselevel" Multiplicity="0..1" />
+    <End Role="coursetbl" Type="Self.coursetbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="couselevel">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="coursetbl">
+        <PropertyRef Name="level2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_enrolltbl_coursetbl">
     <End Role="coursetbl" Type="Self.coursetbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -83,8 +103,13 @@
   </Function>
   <EntityContainer Name="schooldbModelStoreContainer">
     <EntitySet Name="coursetbl" EntityType="Self.coursetbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="couselevel" EntityType="Self.couselevel" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="enrolltbl" EntityType="Self.enrolltbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="studenttbl" EntityType="Self.studenttbl" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__coursetbl__level__37A5467C" Association="Self.FK__coursetbl__level__37A5467C">
+      <End Role="couselevel" EntitySet="couselevel" />
+      <End Role="coursetbl" EntitySet="coursetbl" />
+    </AssociationSet>
     <AssociationSet Name="FK_enrolltbl_coursetbl" Association="Self.FK_enrolltbl_coursetbl">
       <End Role="coursetbl" EntitySet="coursetbl" />
       <End Role="enrolltbl" EntitySet="enrolltbl" />

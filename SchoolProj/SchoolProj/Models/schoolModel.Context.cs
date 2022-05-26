@@ -30,6 +30,7 @@ namespace SchoolProj.Models
         public virtual DbSet<coursetbl> coursetbls { get; set; }
         public virtual DbSet<enrolltbl> enrolltbls { get; set; }
         public virtual DbSet<studenttbl> studenttbls { get; set; }
+        public virtual DbSet<couselevel> couselevels { get; set; }
     
         [DbFunction("schooldbEntities", "funcGitCourseByTitle")]
         public virtual IQueryable<funcGitCourseByTitle_Result> funcGitCourseByTitle(string myTitle)

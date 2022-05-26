@@ -3,60 +3,62 @@
 @{
     ViewBag.Title = "Index";
 }
-<link rel="stylesheet" href="newglyphicon.css" />
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.level)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.credit)
-
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rating)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table id="myTable" class="table">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.level)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.credit)
-            </td>
-            <td>
-                @if (item.rating.HasValue)
-                {
-                    for (int i = 0; i < (int)item.rating; i++)
-                    {
-                        <span style="font-size: 1em; color: Tomato;">
-                            <i class="fa fa-light fa-star"></i>
-                        </span>
-                    }
-                }
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.level2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.credit)
 
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-            </td>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rating)
+            </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.couselevel.level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.credit)
+                </td>
+                <td>
+                    @if (item.rating.HasValue)
+                    {
+                        for (int i = 0; i < (int)item.rating; i++)
+                        {
+                            <span style="font-size: 1em; color: Tomato;">
+                                <i class="fa fa-light fa-star"></i>
 
+                            </span>
+                        }
+                    }
+
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

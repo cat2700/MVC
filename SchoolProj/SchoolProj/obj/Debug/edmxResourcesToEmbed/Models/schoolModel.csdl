@@ -13,6 +13,8 @@
     <Property Name="level" Type="schooldbModel.CourseLevels" />
     <Property Name="isactive" Type="Boolean" Nullable="false" />
     <Property Name="rating" Type="schooldbModel.RatingLevels" />
+    <Property Name="level2" Type="Int32" />
+    <NavigationProperty Name="couselevel" Relationship="schooldbModel.FK__coursetbl__level__37A5467C" FromRole="coursetbl" ToRole="couselevel" />
   </EntityType>
   <EntityType Name="enrolltbl">
     <Key>
@@ -84,6 +86,11 @@
       <Parameter Name="mytitle" Mode="In" Type="String" />
       <Parameter Name="mycredits" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="couselevels" EntityType="schooldbModel.couselevel" />
+    <AssociationSet Name="FK__coursetbl__level__37A5467C" Association="schooldbModel.FK__coursetbl__level__37A5467C">
+      <End Role="couselevel" EntitySet="couselevels" />
+      <End Role="coursetbl" EntitySet="coursetbls" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="funcGitCourseByTitle_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -115,4 +122,24 @@
     <Member Name="Excellent" Value="4" />
     <Member Name="Awesome" Value="5" />
   </EnumType>
+  <EntityType Name="couselevel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="level" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="coursetbls" Relationship="schooldbModel.FK__coursetbl__level__37A5467C" FromRole="couselevel" ToRole="coursetbl" />
+  </EntityType>
+  <Association Name="FK__coursetbl__level__37A5467C">
+    <End Type="schooldbModel.couselevel" Role="couselevel" Multiplicity="0..1" />
+    <End Type="schooldbModel.coursetbl" Role="coursetbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="couselevel">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="coursetbl">
+        <PropertyRef Name="level2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

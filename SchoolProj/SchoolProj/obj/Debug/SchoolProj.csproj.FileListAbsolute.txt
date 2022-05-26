@@ -86,3 +86,4 @@ D:\Github_files\MVC\SchoolProj\SchoolProj\obj\Debug\SchoolProj.csproj.CoreCompil
 D:\Github_files\MVC\SchoolProj\SchoolProj\obj\Debug\SchoolProj.csproj.CopyComplete
 D:\Github_files\MVC\SchoolProj\SchoolProj\obj\Debug\SchoolProj.dll
 D:\Github_files\MVC\SchoolProj\SchoolProj\obj\Debug\SchoolProj.pdb
+D:\Github_files\MVC\SchoolProj\SchoolProj\obj\Debug\SchoolProj.csproj.AssemblyReference.cache

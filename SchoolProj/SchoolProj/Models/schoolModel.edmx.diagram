@@ -10,6 +10,8 @@
         <EntityTypeShape EntityType="schooldbModel.studenttbl" Width="1.875" PointX="7" PointY="1.875" IsExpanded="true" />
         <AssociationConnector Association="schooldbModel.FK_enrolltbl_coursetbl" ManuallyRouted="false" />
         <AssociationConnector Association="schooldbModel.FK_enrolltbl_studenttbl" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="schooldbModel.couselevel" Width="1.5" PointX="6.375" PointY="7.875" />
+        <AssociationConnector Association="schooldbModel.FK__coursetbl__level__37A5467C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

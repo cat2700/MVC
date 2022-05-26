@@ -44,6 +44,35 @@
 
     </dl>
 </div>
+<br />
+
+<table id="myTable" class="table">
+    <thead>
+        <tr>
+            <th>Course Title</th>
+            <th>Course Credit</th>
+            <th>The Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var enr in Model.enrolltbls)
+        {
+            <tr>
+                <td>@enr.coursetbl.title</td>
+                <td>@enr.coursetbl.credit</td>
+                <td>@enr.grade</td>
+                <td>@Html.ActionLink("Edit", "Edit", "enrolltbls", new { id = @enr.id }, null) </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+@foreach (var enr in Model.enrolltbls)
+{
+    @Html.Partial("_courseSummary", enr);
+
+}
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
