@@ -56,9 +56,11 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                    <a class="btn btn-danger" data-model-id="@item.id" onclick="DelMe(this)" >Delete Ajax</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+

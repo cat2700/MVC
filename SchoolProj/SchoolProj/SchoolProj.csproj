@@ -169,6 +169,7 @@
     <Compile Include="Controllers\enrolltblsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\myParentController.cs" />
     <Compile Include="Controllers\studenttblsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +196,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\metaData.cs" />
+    <Compile Include="Models\myCourseStats.cs" />
     <Compile Include="Models\partialClases.cs" />
     <Compile Include="Models\RatingLevels.cs">
       <DependentUpon>schoolModel.tt</DependentUpon>
@@ -376,10 +378,14 @@
     <Content Include="Views\enrolltbls\Index.cshtml" />
     <Content Include="Views\Shared\_navBar.cshtml" />
     <Content Include="Views\Shared\_courseSummary.cshtml" />
+    <Content Include="Views\coursetbls\IndexWithDeletedMultible.cshtml" />
+    <Content Include="Views\Shared\_courseStatSummery.cshtml" />
+    <Content Include="Views\coursetbls\studentsInCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\Students\" />
+    <Folder Include="Views\myParent\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

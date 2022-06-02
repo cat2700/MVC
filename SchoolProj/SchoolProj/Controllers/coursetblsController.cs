@@ -10,7 +10,7 @@ using SchoolProj.Models;
 
 namespace SchoolProj.Controllers
 {
-    public class coursetblsController : Controller
+    public class coursetblsController : myParentController
     {
         private schooldbEntities db = new schooldbEntities();
 
@@ -29,6 +29,33 @@ namespace SchoolProj.Controllers
                 
                 return View(cc.ToList());
             }
+        }
+        [HttpGet]
+        public ActionResult IndexWithDeletedMultible()
+        {
+            return View(db.coursetbls.ToList());
+        }
+        [HttpPost]
+        public ActionResult IndexWithDeletedMultible(FormCollection fc)
+        {
+            // 55,7,100
+            if (!string.IsNullOrEmpty(fc["ID"]))
+            {
+                string[] ids = fc["ID"].Split(new char[] { ',' });
+                foreach (var i in ids)
+                {
+                    coursetbl coursetbl = db.coursetbls.Find(int.Parse(i));
+                    db.coursetbls.Remove(coursetbl);
+                    db.SaveChanges();
+                }
+            }
+            return View(db.coursetbls.ToList());
+        }
+
+        public ActionResult studentsInCourse( string coursetitle)
+        {
+            var results = db.enrolltbls.Where(c => c.coursetbl.title == coursetitle);
+            return View(results);
         }
 
         // GET: coursetbls/Details/5
@@ -125,6 +152,17 @@ namespace SchoolProj.Controllers
             db.coursetbls.Remove(coursetbl);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // POST: coursetbls/DeleteAjax/5
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult DeleteAjax(int id)
+        {
+            coursetbl coursetbl = db.coursetbls.Find(id);
+            db.coursetbls.Remove(coursetbl);
+            db.SaveChanges();
+            return Json(true,JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

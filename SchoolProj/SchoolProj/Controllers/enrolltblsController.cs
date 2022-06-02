@@ -10,7 +10,7 @@ using SchoolProj.Models;
 
 namespace SchoolProj.Controllers
 {
-    public class enrolltblsController : Controller
+    public class enrolltblsController : myParentController
     {
         private schooldbEntities db = new schooldbEntities();
 

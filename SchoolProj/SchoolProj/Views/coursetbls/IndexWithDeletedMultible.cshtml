@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SchoolProj.Models.coursetbl>
+
+@{
+    ViewBag.Title = "Index With Deleted Multible";
+}
+
+<h2>IndexWithDeletedMultible</h2>
+
+
+@using (Html.BeginForm("IndexWithDeletedMultible", "coursetbls", FormMethod.Post))
+{
+    <p>@Html.ActionLink("Create New", "Create")</p>
+
+    <button type="submit" 
+            value="Delete" 
+            class="btn btn-outline-danger"
+            onclick="return confirm('Are You Sure?')">
+        Delete
+    </button>
+
+    <table class="table">
+        <tr>
+            <th>  <input type="checkbox" class="form-check-input" id="parent" autocomplete="off"></th>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.credit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>  <input type="checkbox" class="form-check-input child" name="ID" value="@item.id" autocomplete="off"></th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.credit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+}
