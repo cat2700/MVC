@@ -12,6 +12,8 @@ namespace SchoolProj.Controllers
         private schooldbEntities db = new schooldbEntities();
 
         static List<myCourseStats> stats = null;
+        
+        static List<myStudentsStats> StuStats = null;
 
         public myParentController()
         {

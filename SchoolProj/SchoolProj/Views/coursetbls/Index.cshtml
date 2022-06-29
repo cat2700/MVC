@@ -64,3 +64,16 @@
     </tbody>
 </table>
 
+<div id="accordion">
+    @foreach (var i in Model)
+    {
+        <div class="group">
+            <h3>@i.title</h3>
+            <div>
+                <p>
+                    @i.credit
+                </p>
+            </div>
+        </div>
+    }
+</div>

@@ -30,6 +30,11 @@ namespace SchoolProj.Controllers
                 return View(cc.ToList());
             }
         }
+        public JsonResult GetSearchValue(string Search)
+        {
+            var selectCourses = db.coursetbls.Where(c => c.title.Contains(Search)).Select(x => new { resultCol = x.title }).ToList();
+            return new JsonResult { Data= selectCourses ,JsonRequestBehavior=JsonRequestBehavior.AllowGet};
+        }
         [HttpGet]
         public ActionResult IndexWithDeletedMultible()
         {

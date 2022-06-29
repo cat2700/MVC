@@ -13,6 +13,30 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+<style>
+     /*https://bootstrap-menu.com/*/
+    .megasubmenu{ padding:1rem; }
+
+    /* ============ desktop view ============ */
+    @@media all and (min-width: 992px) {
+	    .dropdown-menu .dropdown-toggle::after{
+		    border-top: .3em solid transparent;
+	        border-right: 0;
+	        border-bottom: .3em solid transparent;
+	        border-left: .3em solid;
+	    }
+
+	    .megasubmenu{
+		    left:100%; top:0; min-height: 100%; min-width:500px;
+	    }
+
+	    .dropdown-menu > li:hover .megasubmenu{
+		    display: block;
+	    }
+    }
+    /* ============ desktop view .end// ============ */
+</style>
+
     <link rel="stylesheet" href="~/Content/toastr.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
@@ -75,7 +99,26 @@
                 $("#parent").prop("checked", false);
             }
         });
+        // search input autoComplete
+        $("#serchInput").autocomplete({
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetSearchValue","coursetbls")',
+                    type: "POST",
+                    dataType: "json",
+                    data: { search: $("#serchInput").val() },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.resultCol, value: item.resultCol };
+                        }))
+                    }
+                })
+            },
+            messages: { noResults: "", results: "" }
+        });
     });
+
     function DelMe(obj) {
         swal({
             title: 'Are You Sure ?',
@@ -102,5 +145,66 @@
         })
     };
 
+    //JQuery accordion
+    $(function () {
+        $("#accordion")
+            .accordion({
+                header: "> div > h3"
+            })
+            .sortable({
+                axis: "y",
+                handle: "h3",
+                stop: function (event, ui) {
+                    // IE doesn't register the blur when sorting
+                    // so trigger focusout handlers to remove .ui-state-focus
+                    ui.item.children("h3").triggerHandler("focusout");
+
+                    // Refresh accordion to handle new order
+                    $(this).accordion("refresh");
+                }
+            });
+    });
+
+    // >> https://bootstrap-menu.com/detail-megasubmenu.html
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /////// Prevent closing from click inside dropdown
+            document.querySelectorAll('.dropdown-menu').forEach(function (element) {
+                element.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                });
+            });
+
+            // make it as accordion for smaller screens
+            if (window.innerWidth < 992) {
+                // close all inner dropdowns when parent is closed
+                document.querySelectorAll('.navbar .dropdown').forEach(function (everydropdown) {
+                    everydropdown.addEventListener('hidden.bs.dropdown', function () {
+                        // after dropdown is hidden, then find all submenus
+                        this.querySelectorAll('.megasubmenu').forEach(function (everysubmenu) {
+                            // hide every submenu as well
+                            everysubmenu.style.display = 'none';
+                        });
+                    })
+                });
+
+                document.querySelectorAll('.has-submenu a').forEach(function (element) {
+                    element.addEventListener('click', function (e) {
+                        let nextEl = this.nextElementSibling;
+                        if (nextEl && nextEl.classList.contains('megasubmenu')) {
+                            // prevent opening link if link needs to open dropdown
+                            e.preventDefault();
+                            if (nextEl.style.display == 'block') {
+                                nextEl.style.display = 'none';
+                            } else {
+                                nextEl.style.display = 'block';
+                            }
+                        }
+                    });
+                }) // end foreach
+            }
+            // end if innerWidth
+        });
+    // DOMContentLoaded  end
 
 </script>

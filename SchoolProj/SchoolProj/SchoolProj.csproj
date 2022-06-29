@@ -197,6 +197,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\metaData.cs" />
     <Compile Include="Models\myCourseStats.cs" />
+    <Compile Include="Models\myStudentsStats.cs" />
     <Compile Include="Models\partialClases.cs" />
     <Compile Include="Models\RatingLevels.cs">
       <DependentUpon>schoolModel.tt</DependentUpon>
